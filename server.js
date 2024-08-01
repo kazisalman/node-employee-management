@@ -10,6 +10,8 @@ app.use(express.json());
 
 // Route middleware
 app.use("/api/auth",routes.auth)
+app.use("/api/profile",routes.profile)
+
 
 // Test route
 app.get('/', (req, res) => {

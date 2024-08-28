@@ -1,3 +1,40 @@
+CREATE TABLE tasks (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  description TEXT,
+  status VARCHAR(50) NOT NULL DEFAULT 'pending',
+  created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  start_date TIMESTAMP,
+  end_date TIMESTAMP,
+  project_id INTEGER NOT NULL,
+  CONSTRAINT fk_project FOREIGN KEY (project_Id) REFERENCES projects(id)
+);
+
+
+CREATE TABLE projects (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  description TEXT,
+  created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE user_projects (
+  user_id INTEGER NOT NULL,
+  project_id INTEGER NOT NULL,
+  PRIMARY KEY (user_id, project_id),
+  CONSTRAINT fk_user_project FOREIGN KEY (user_id) REFERENCES users(id),
+  CONSTRAINT fk_project_user FOREIGN KEY (project_id) REFERENCES projects(id)
+);
+
+CREATE TABLE user_tasks (
+  user_id INTEGER NOT NULL,
+  task_id INTEGER NOT NULL,
+  PRIMARY KEY (user_id, task_id),
+  CONSTRAINT fk_user_task FOREIGN KEY (user_id) REFERENCES users(id),
+  CONSTRAINT fk_task_user FOREIGN KEY (task_id) REFERENCES tasks(id)
+);
+
+
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(255) NOT NULL UNIQUE,

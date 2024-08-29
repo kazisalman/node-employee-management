@@ -11,6 +11,7 @@ app.use(express.json());
 // Route middleware
 app.use("/api/auth",routes.auth)
 app.use("/api/profile",routes.profile)
+app.use("/api/project",routes.project)
 
 
 // Test route

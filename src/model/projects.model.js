@@ -16,6 +16,10 @@ const Project = sequelize.define('Project', {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  created_by:{
+    type:DataTypes.STRING,
+    allowNull: false,
+  },
   created_at: {
     type: DataTypes.DATE,
     defaultValue: Sequelize.NOW,
